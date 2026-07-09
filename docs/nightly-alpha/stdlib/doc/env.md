@@ -1,19 +1,3 @@
-## `bash_version`
-
-```ab
-pub fun bash_version(): [Int] 
-```
-
-Returns current bash version with major, minor and patch components.
-
-### Usage
-```ab
-import { bash_version } from "std/env"
-
-const version = bash_version()
-echo("Bash {version[0]}.{version[1]}.{version[2]}")
-```
-
 ## `bold`
 
 ```ab
@@ -139,16 +123,16 @@ env_const_set("API_KEY", "secret123")
 ## `env_file_load`
 
 ```ab
-pub fun env_file_load(file: Text = ".env"): Null 
+pub fun env_file_load(file: Text = ".env"): Null? 
 ```
 
-Loads the env file in the environment, using `xargs`.
+Loads the env file in the environment
 
 ### Usage
 ```ab
 import { env_file_load } from "std/env"
 
-env_file_load(".env")
+env_file_load(".env")?
 ```
 
 ## `env_var_get`
@@ -169,10 +153,10 @@ const debug = env_var_get("DEBUG")
 ## `env_var_load`
 
 ```ab
-pub fun env_var_load(var: Text, file: Text = ".env"): Text 
+pub fun env_var_load(var: Text, file: Text = ".env"): Text? 
 ```
 
-Retrieves the value of an environment variable, optionally sourcing it from a file if not already set.
+Retrieves the value of an environment variable from the file.
 
 ### Usage
 ```ab
@@ -363,7 +347,7 @@ printf("%s\n", [italic("Emphasized text")])
 ## `kill`
 
 ```ab
-pub fun kill(pid: Int, signal: Text = "TERM"): Null? 
+pub fun kill(process_id: Int, signal: Text = "TERM"): Null? 
 ```
 
 Sends a signal to a process by PID.
@@ -501,7 +485,11 @@ import { shopt_disable } from "std/env"
 shopt_disable("dotglob")? // Hides files starting with "." during filename expansion
 shopt_disable("noglob", true)? // Enables filename expansion (globbing)
 ```
-For all available options, see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+For all available options, see:
+- [bash options](https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html)
+- [zsh options](https://zsh.sourceforge.io/Doc/Release/Options.html)
+- [ksh options](https://www.mkssoftware.com/docs/man1/set.1.asp)
+NOTE: set_opt argument is only for bash target, otherwise it's ignored
 
 ## `shopt_enable`
 
@@ -518,7 +506,11 @@ import { shopt_enable } from "std/env"
 shopt_enable("globstar")? // Enables star (*) expansion for filenames
 shopt_enable("noglob", true)? // Disables filename expansion (globbing). Note that this option doesn't properly work in a limited environment, e.g. GitHub Actions
 ```
-For all available options, see https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
+For all available options, see:
+- [bash options](https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html)
+- [zsh options](https://zsh.sourceforge.io/Doc/Release/Options.html)
+- [ksh options](https://www.mkssoftware.com/docs/man1/set.1.asp)
+NOTE: set_opt argument is only for bash target, otherwise it's ignored
 
 ## `styled`
 
