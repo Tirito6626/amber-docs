@@ -1,9 +1,3 @@
-## `bash_version`
-
-```ab
-fun bash_version(): [Int] 
-```
-
 ## `capitalized`
 
 ```ab
@@ -84,6 +78,30 @@ import { count_words } from "std/text"
 
 const count = count_words("hello world foo")
 echo(count) // 3
+```
+
+## `cpad`
+
+```ab
+pub fun cpad(text: Text, pad: Text, length: Int): Text 
+```
+
+Pads `text` with the specified `pad` character to the center within the desired `length`
+
+### Usage
+```ab
+import { cpad } from "std/text"
+
+let padded: Text
+
+padded = cpad("42", "0", 5)
+echo(padded) // "04200"
+
+padded = cpad("42", "0", 6)
+echo(padded) // "004200"
+
+padded = cpad("42", "0", 1)
+echo(padded) // "42"
 ```
 
 ## `ends_with`
@@ -480,6 +498,23 @@ import { text_contains_any } from "std/text"
 if text_contains_any("hello world", ["foo", "world", "bar"]) {
     echo("Found at least one!")
 }
+```
+
+## `text_find`
+
+```ab
+pub fun text_find(text: Text, value: Text): Int 
+```
+
+Returns index of the first value found in the specified text.
+
+If the value is not found, the function returns -1.
+
+### Usage
+```ab
+import { text_find } from "std/text"
+
+text_find("abba", "b") // Outputs 1
 ```
 
 ## `trim`
